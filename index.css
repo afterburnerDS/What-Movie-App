@@ -88,12 +88,6 @@ MAIN MOVIE
     justify-content: center; */
 }
 
-.mainMovie:before {
-    content:"";
-    position:relative;
-    background-color: black;
-    height: 40rem;
-}
 
 .mainMovie__main{
     display:flex;
