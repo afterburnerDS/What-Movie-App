@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="video.popup.css">
+    <link rel="stylesheet" href="index.css">
+    <title>What Movie Today ?</title>
+</head>
+
+<body>
+    <div class="container">
+        <header role="banner">
+            <div class="back visibility">
+                <a class="back__link" href="#">back</a>
+            </div>
+            <div class="titles">
+                <p>What Movie for Today ?</p>
+            </div>
+
+            <div class="hidden"></div>
+        </header>
+        <main role="main" class="content">
+            <div class="mainPage ">
+                <form action="/login" method="post" class="searchMovie">
+
+                    <label for="actor">Actor</label>
+                    <input placeholder='Tom Hanks' type="text" id='actor' class="actor" />
+
+                    <label for="director">Director</label>
+                    <input placeholder='Martin Scorsese' type="text" id='director' class="director" />
+
+                    <label for="genres">Genre</label>
+                    <select name="genres" id="genres" class="genre">
+                        <option value=""></option>
+                        <option value="28">Action</option>
+                        <option value="12">Adventure</option>
+                        <option value="16">Animation</option>
+                        <option value="35">Comedy</option>
+                        <option value="80">Crime</option>
+                        <option value="99">Documentary</option>
+                        <option value="18">Drama</option>
+                        <option value="10751">Family</option>
+                        <option value="14">Fantasy</option>
+                        <option value="36">History</option>
+                        <option value="27">Horror</option>
+                        <option value="1042">Music</option>
+                        <option value="9648">Mystery</option>
+                        <option value="10749">Romance</option>
+                        <option value="878">Science Fiction</option>
+                        <option value="10770">TV Movie</option>
+                        <option value="53">Thriller</option>
+                        <option value="10752">War</option>
+                        <option value="37">Western</option>
+                    </select>
+
+                    <input type="submit" name="submit" value="Submit" class="submit">
+                </form>
+
+                <div class="mainMovie">
+                    <div class="mainMovie__main">
+                        <div class="mainMovie__poster "></div>
+                        <div class="mainMovie__info">
+                            <p class="mainMovie__info--title">Lorem ipsum dolor sit amet.</p>
+                            <div class="mainMovie__info--extra">
+                                <div class="mainMovie__info--extra__add">
+                                    <p class="mainMovie__info--extra__add--rating">rating</p>
+                                    <p class="mainMovie__info--extra__add--genres">genres</p>
+                                </div>
+                                <p class="mainMovie__info--extra__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi quod ipsam deleniti at
+                                    dolores harum eveniet. Quis, nulla similique! Aliquam!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mainMovie__buttons">
+                       
+                            <a href="#" class="mainMovie__buttons--trailer"  id="video1" video-url="https://www.youtube.com/watch?v=0wCC3aLXdOw">
+                                View Trailer
+                              </a>
+                        
+                        <a href="#" class="mainMovie__buttons--info">More Info</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="moreInfoPage nodisplay ">
+                <div class="moreInfoPage__title"></div>
+                <div class="moreInfoPage__poster"></div>
+                <a id="video2" video-url="https://www.youtube.com/watch?v=0wCC3aLXdOw" href="#" class="moreInfoPage__trailer mainMovie__buttons--trailer">View Trailer</a>
+                <div class="moreInfoPage__details">
+                    <p class="moreInfoPage__details--rating">Rating</p>
+                    <p class="moreInfoPage__details--year">Year</p>
+                    <p class="moreInfoPage__details--Country">Country</p>
+                    <p class="moreInfoPage__details--genres">Genres</p>
+                </div>
+                <div class="moreInfoPage__team">
+                    <p class="moreInfoPage__team--Director">Director</p>
+                    <p class="moreInfoPage__team--Actors">Actors</p>
+                </div>
+                <div class="moreInfoPage__description">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores dolore magnam ducimus ullam officiis
+                        perferendis, laudantium rem tenetur quidem hic dicta reiciendis, expedita quae rerum aperiam modi.
+                        Velit, praesentium error.</p>
+                </div>
+                <div class="moreInfoPage__similarMovies">
+                    <p>People who liked this one, also liked these</p>
+                    <div class="groupSimilar">
+                        <a href="#" class="similarMovie similarMovie1 ">
+
+                        </a>
+
+                        <a href="#" class="similarMovie similarMovie2">
+
+                        </a>
+
+                        <a href="#" class="similarMovie similarMovie3">
+
+                        </a>
+
+                        <a href="#" class="similarMovie similarMovie4">
+
+                        </a>
+
+                        <a href="#" class="similarMovie similarMovie5">
+
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="video.popup.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

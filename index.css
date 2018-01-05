@@ -1,0 +1,220 @@
+/********************************************************
+LAYOUT
+********************************************************/
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.nodisplay{
+    display:none !important;
+}
+
+html {
+    box-sizing: border-box;
+    /*1 rem = 10px*/
+    font-size: 62.5%;  
+
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    font-size: 2rem;
+}
+
+/********************************************************
+LAYOUT
+********************************************************/
+
+.container{
+    margin: 12rem auto;
+    max-width:60rem;
+    display:flex;
+    flex-direction:column;
+}
+
+/********************************************************
+HEADER
+********************************************************/
+
+header{
+    display: flex;
+    margin-bottom: 4rem;
+}
+
+.back{
+    margin-right:auto;
+}
+
+.hidden{
+    margin-left:auto;
+}
+
+.visibility{
+    visibility: hidden;
+}
+
+/********************************************************
+FORM
+********************************************************/
+
+.searchMovie{
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+}
+
+
+/********************************************************
+MAIN MOVIE
+********************************************************/
+
+.mainMovie{
+    height: 40rem;
+    border: 1px solid black;
+    display:flex;
+    flex-direction: column;
+    padding: 2rem;
+    /* align-items: center;
+    justify-content: center; */
+}
+
+.mainMovie:before {
+    content:"";
+    position:relative;
+    background-color: black;
+    height: 40rem;
+}
+
+.mainMovie__main{
+    display:flex;
+    flex-direction: row;
+}
+
+.mainMovie__poster{
+    height: 32rem;
+    width: 20rem;
+    margin-right: 2rem;
+    flex: 0 0 40%;
+    border: 1px solid black;
+   background-size: cover;
+
+}
+
+.mainMovie__poster img {
+   
+    /* background-size: cover; */
+}
+
+.mainMovie__info--extra__add{
+    margin: 1rem 0;
+    display:flex;
+    flex-direction: row;
+    font-size: 1.4rem;
+    
+}
+
+.mainMovie__info--extra__add p:first-of-type {
+    margin-right: 2rem;
+}
+
+.mainMovie__buttons{
+    align-self:  center;
+    margin-top: 2rem;
+}
+
+.mainMovie__buttons a:first-of-type{
+    margin-right: 1rem;
+}
+
+/********************************************************
+MORE INFO
+********************************************************/
+
+.moreInfoPage{
+    border: 1px solid black;
+    /* height: 70rem; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.moreInfoPage__title{
+    margin-top: 3rem;
+}
+
+.moreInfoPage__poster{
+    border: 1px solid black;
+    height: 35rem;
+    width: 25rem;
+    margin: 3rem 0;
+    background-size: cover;
+}
+
+.moreInfoPage__details{
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.moreInfoPage__details p{
+    margin-right: 1rem;
+}
+
+.moreInfoPage__team {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.moreInfoPage__description{
+    margin: 0 2rem 3rem ;
+}
+
+.moreInfoPage__similarMovies{
+    display:flex;
+    flex-direction: column;
+    height: 20rem;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.moreInfoPage__similarMovies p {
+    margin-bottom: 1rem;
+}
+
+.groupSimilar{
+    display: flex;
+    margin-bottom: 2rem;
+    
+}
+
+.similarMovie{
+    height: 15rem;
+    width: 10rem;
+    border: 1px solid black;
+    margin-right: 1rem;
+    background-size: cover;
+    
+}
+
+.similarMovie:last-of-type{
+    margin-right: 0;
+}
+
+
+
+
+
+
