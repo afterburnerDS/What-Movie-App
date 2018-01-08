@@ -4,6 +4,7 @@
 
 (function($) {
     $.fn.videoPopup = function(options) {
+        
         var videoPopup = {
             embedLink: ''
         }
@@ -88,9 +89,10 @@
         }
 
         $(this).css('cursor', 'pointer');
+        $(this).off('click');
         $(this).on('click', function (event) {
-            event.preventDefault();
-            
+             event.preventDefault();
+             console.log("inside videopopup click");
             var videoUrl = $(this).attr("video-url");
             var videoIframe = mountEmbedLink(videoUrl);
 

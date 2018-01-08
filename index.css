@@ -80,7 +80,7 @@ MAIN MOVIE
 ********************************************************/
 
 .mainMovie{
-    height: 40rem;
+    height: 44rem;
     border: 1px solid black;
     display:flex;
     flex-direction: column;
@@ -124,11 +124,16 @@ MAIN MOVIE
 
 .mainMovie__buttons{
     align-self:  center;
-    margin-top: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
 }
 
 .mainMovie__buttons a:first-of-type{
     margin-right: 1rem;
+}
+
+.simple-pagination{
+    margin: 0 auto !important;
 }
 
 /********************************************************

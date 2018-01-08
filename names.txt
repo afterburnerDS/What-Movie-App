@@ -1,2 +1,32 @@
-Hugh Jackman
-Michael Gracey
+Tom Hanks
+Steven Spielberg
+
+
+`<div class="mainMovie mainMovie_${index}">
+    <div class="mainMovie__main">
+        <div class="mainMovie__poster mainMovie__poster_${index} "></div>
+        <div class="mainMovie__info">
+            <p class="mainMovie__info--title mainMovie__info--title_${index}">Lorem ipsum dolor sit amet.</p>
+            <div class="mainMovie__info--extra">
+                <div class="mainMovie__info--extra__add">
+                    <p class="mainMovie__info--extra__add--rating mainMovie__info--extra__add--rating_${index}">rating</p>
+                    <p class="mainMovie__info--extra__add--genres mainMovie__info--extra__add--genres_${index}">genres</p>
+                </div>
+                <p class="mainMovie__info--extra__desc mainMovie__info--extra__desc_${index}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi quod ipsam deleniti
+                    at dolores harum eveniet. Quis, nulla similique! Aliquam!</p>
+            </div>
+        </div>
+    </div>
+    <div class="mainMovie__buttons">
+
+        <a href="#" class="mainMovie__buttons--trailer" id="video1" video-url="https://www.youtube.com/watch?v=0wCC3aLXdOw">
+            View Trailer
+        </a>
+
+        <a href="#" class="mainMovie__buttons--info">More Info</a>
+    </div>
+
+        <div class="pagination">
+
+        </div>
+    </div>`

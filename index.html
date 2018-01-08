@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="video.popup.css">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="simplePagination.css" />
     <title>What Movie Today ?</title>
 </head>
 
@@ -24,12 +25,12 @@
         </header>
         <main role="main" class="content">
             <div class="mainPage ">
-                <form action="/login" method="post" class="searchMovie">
+                <form class="searchMovie">
 
-                    <label for="actor">Actor</label>
+                    <label for="actor">Cast</label>
                     <input placeholder='Tom Hanks' type="text" id='actor' class="actor" />
 
-                    <label for="director">Director</label>
+                    <label for="director">Crew</label>
                     <input placeholder='Martin Scorsese' type="text" id='director' class="director" />
 
                     <label for="genres">Genre</label>
@@ -46,7 +47,7 @@
                         <option value="14">Fantasy</option>
                         <option value="36">History</option>
                         <option value="27">Horror</option>
-                        <option value="1042">Music</option>
+                        <option value="10402">Music</option>
                         <option value="9648">Mystery</option>
                         <option value="10749">Romance</option>
                         <option value="878">Science Fiction</option>
@@ -56,34 +57,86 @@
                         <option value="37">Western</option>
                     </select>
 
+                    <label for="rating">IMDB Rating</label>
+                    <select name="rating" id="rating" class="rating">
+                        <option value=""></option>
+                        <option value="9.0">>9</option>
+                        <option value="8.0">>8</option>
+                        <option value="7.0">>7</option>
+                        <option value="6.0">>6</option>
+                        <option value="5.0">>5</option>
+                        <option value="4">>4</option>
+                        <option value="3">>3</option>
+                        <option value="2">>2</option>
+                        <option value="1">>1</option>
+                    </select>
+
+                    <label for="decade">Decade</label>
+                    <select name="decade" id="decade" class="decade">
+                        <option value=""></option>
+                        <option value="2010 2020">2010s</option>
+                        <option value="2000 2010">2000s</option>
+                        <option value="1990 2000">1990s</option>
+                        <option value="1980 1990">1980s</option>
+                        <option value="1970 1980">1970s</option>
+                        <option value="1960 1970">1960s</option>
+                        <option value="1950 1960">1950s</option>
+                        <option value="1940 1950">1940s</option>
+                        <option value="1930 1940">1930s</option>
+                        <option value="1920 1930">1920s</option>
+                        <option value="1910 1920">1910s</option>
+                        <option value="1900 1910">1900s</option>
+                    </select>
+
+                    <label for="language">Language</label>
+                    <select name="language" id="language" class="language">
+                        <option value=""></option>
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="it">Italilan</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="ja">Japanese</option>
+                        <option value="ru">Russian</option>
+                        <option value="zh-cn">Chinese</option>
+                        <option value="hi">Hindi</option>
+                        <option value="pt">Portuguese</option>
+                    </select>
+
                     <input type="submit" name="submit" value="Submit" class="submit">
                 </form>
-
-                <div class="mainMovie">
-                    <div class="mainMovie__main">
-                        <div class="mainMovie__poster "></div>
-                        <div class="mainMovie__info">
-                            <p class="mainMovie__info--title">Lorem ipsum dolor sit amet.</p>
-                            <div class="mainMovie__info--extra">
-                                <div class="mainMovie__info--extra__add">
-                                    <p class="mainMovie__info--extra__add--rating">rating</p>
-                                    <p class="mainMovie__info--extra__add--genres">genres</p>
+                    
+                <div class="mainMovies">
+                    <!-- <div class="mainMovie">
+                        <div class="mainMovie__main">
+                            <div class="mainMovie__poster "></div>
+                            <div class="mainMovie__info">
+                                <p class="mainMovie__info--title">Lorem ipsum dolor sit amet. <span> class="mainMovie__info--year></span>/p>
+                                
+                                <div class="mainMovie__info--extra">
+                                    <div class="mainMovie__info--extra__add">
+                                        <p class="mainMovie__info--extra__add--rating">rating</p>
+                                        <p class="mainMovie__info--extra__add--genres">genres</p>
+                                    </div>
+                                    <p class="mainMovie__info--extra__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi quod ipsam deleniti
+                                        at dolores harum eveniet. Quis, nulla similique! Aliquam!</p>
                                 </div>
-                                <p class="mainMovie__info--extra__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi quod ipsam deleniti at
-                                    dolores harum eveniet. Quis, nulla similique! Aliquam!</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="mainMovie__buttons">
-                       
-                            <a href="#" class="mainMovie__buttons--trailer"  id="video1" video-url="https://www.youtube.com/watch?v=0wCC3aLXdOw">
-                                View Trailer
-                              </a>
-                        
-                        <a href="#" class="mainMovie__buttons--info">More Info</a>
-                    </div>
+                        <div class="mainMovie__buttons">
 
+                            <a href="#" class="mainMovie__buttons--trailer" id="video1" video-url="https://www.youtube.com/watch?v=0wCC3aLXdOw">
+                                View Trailer
+                            </a>
+
+                            <a href="#" class="mainMovie__buttons--info">More Info</a>
+                        </div>
+
+                        
+                    </div> -->
+                    
                 </div>
+                
             </div>
 
             <div class="moreInfoPage nodisplay ">
@@ -92,7 +145,6 @@
                 <a id="video2" video-url="https://www.youtube.com/watch?v=0wCC3aLXdOw" href="#" class="moreInfoPage__trailer mainMovie__buttons--trailer">View Trailer</a>
                 <div class="moreInfoPage__details">
                     <p class="moreInfoPage__details--rating">Rating</p>
-                    <p class="moreInfoPage__details--year">Year</p>
                     <p class="moreInfoPage__details--Country">Country</p>
                     <p class="moreInfoPage__details--genres">Genres</p>
                 </div>
@@ -135,6 +187,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="video.popup.js"></script>
+    <script type="text/javascript" src="jquery.simplePagination.js"></script>
     <script src="index.js"></script>
 </body>
 
