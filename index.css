@@ -87,10 +87,26 @@ header{
    
 }
 
+
+@media only screen and (max-width: 
+    600px) {
+        .titles p{
+            font-size:3.5rem;
+        }
+    }
+
+
 .titles img{
     height: 19rem;
  
 }
+
+@media only screen and (max-width: 
+    600px) {
+        .titles img{
+            height:12rem;
+        }
+    }
 
 
 .hidden{
@@ -331,13 +347,13 @@ MAIN MOVIE
     height: 100%;
 }
 
-@media only screen and (max-width: 
+/* @media only screen and (max-width: 
     900px) {
         .mainMovie__poster{
-            height: 20rem;
-            width: 10rem;
+            
+            max-height: 35rem;
         }
-    }
+    } */
 
 
 .mainMovie__info--title{
@@ -475,6 +491,7 @@ MORE INFO
 .moreInfoPage{
     /* border: 1px solid black; */
     /* height: 70rem; */
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -528,6 +545,14 @@ a.moreInfoPage__trailer{
     transition: .3s all;
 }
 
+@media only screen and (max-width: 
+    600px) {
+        a.moreInfoPage__trailer{
+            padding: 1.5rem 4rem;
+            font-size: 1.5rem;
+        }
+    }
+
 
 a.moreInfoPage__trailer:hover{
     background-color: var(--color-tertiary);
@@ -549,10 +574,21 @@ a.moreInfoPage__trailer:hover{
     font-size: 2.2rem;
 }
 
+@media only screen and (max-width: 
+    700px) {
+        .moreInfoPage__details{
+            margin-left: 2rem;
+           
+        }
+    }
+
+
 .moreInfoPage__details p{
     margin-right: 1.5rem;
   
 }
+
+
 
 .moreInfoPage__team {
     display: flex;
@@ -609,6 +645,23 @@ a.moreInfoPage__trailer:hover{
 
     
 }
+
+
+@media only screen and (max-width: 
+    600px) {
+        .similarMovie:last-of-type{
+            display:none;
+           
+        }
+
+        .similarMovie1{
+            display:none;
+        }
+
+        .similarMovie2{
+            display:none;
+        }
+    }
 
 .similarMovie:last-of-type{
     margin-right: 0;
