@@ -2,6 +2,22 @@
 LAYOUT
 ********************************************************/
 
+:root{
+
+    --color-primary:  #0A1016;
+    --color-secondary: #5D94CC;
+    --color-tertiary: #C0E0FF;
+
+    --color-grey-light-1: #faf9f9;
+    --color-grey-light-2: #f4f2f2;
+    --color-grey-light-3: #f0eeee;
+    --color-grey-light-4: #ccc;
+
+    --color-grey-dark-1: #333;
+    --color-grey-dark-2: #777;
+    --color-grey-dark-3: #999;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -21,6 +37,8 @@ html {
     box-sizing: border-box;
     /*1 rem = 10px*/
     font-size: 62.5%;  
+    background-color: #0A1016;
+    color: var(--color-grey-light-3);
 
 }
 
@@ -37,7 +55,7 @@ LAYOUT
 
 .container{
     margin: 12rem auto;
-    max-width:60rem;
+    max-width:85rem;
     display:flex;
     flex-direction:column;
 }
@@ -49,12 +67,31 @@ HEADER
 
 header{
     display: flex;
-    margin-bottom: 4rem;
+    margin: 4rem auto 20rem auto;
+    align-items: center;
+ 
+    justify-content: center;
 }
 
-.back{
-    margin-right:auto;
+.titles{
+    display:flex;
+     justify-content: center;
+
 }
+
+.titles p{
+    font-family: 'Kaushan Script', cursive;
+    font-size: 6rem;
+    transform: translateY(+30%);
+    color: var(--color-grey-light-4);
+   
+}
+
+.titles img{
+    height: 19rem;
+ 
+}
+
 
 .hidden{
     margin-left:auto;
@@ -72,19 +109,184 @@ FORM
     display:flex;
     flex-direction: column;
     margin-bottom: 4rem;
+    margin-top: 3rem;
 }
 
+/* input */
+
+.input-container {
+    padding: 20px 0 0px;
+    text-align: center;
+    margin-bottom: 15rem;
+  }
+
+  .input-container:last-of-type{
+      margin-bottom:5rem;
+  }
+
+  .input-container p{
+    transform: translateY(-7rem);
+    color: #9B9B9B;
+  }
+
+  .input-container label {
+    font-weight: 500;
+    letter-spacing: 4px;
+  }
+
+  .input-container label .label-text {
+    color: #9B9B9B;
+    cursor: text;
+    font-size: 3rem;
+    line-height: 2rem;
+    transform: translateY(-74px);
+    transition: all 0.3s;
+    font-weight: 700;
+    
+  }
+
+  .input-container input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #4A4A4A;
+    color: var(--color-grey-light-4);
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: -1px;
+    outline: 0;
+    padding: 5px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    width: 30rem;
+  }
+
+  .input-container input:focus {
+    width: 35rem;
+    border-bottom: 2px solid var(--color-secondary);
+  }
+
+  .input-container input:focus + .label-text {
+    color: #F0F0F0;
+    font-size: 2.5rem;
+  }
+
+  /* dropdown */
+
+  .select-container{
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10rem;
+      margin-top: 0;
+  }
+
+  .select-container p {
+      color: #9B9B9B;
+  }
+
+  
+
+.select2-selection.select2-selection--multiple{
+      background: transparent !important;
+  }
+
+  .select2-selection.select2-selection--single{
+      background: transparent !important;
+  }
+
+  
+
+
+ .select-container label {
+    font-weight: 500;
+    letter-spacing: 4px;
+    color: #9B9B9B;
+    cursor: text;
+    font-size: 3rem;
+    line-height: 2rem;
+    /* transform: translateY(-74px); */
+    transition: all 0.3s;
+    font-weight: 700;
+    margin-bottom: 3rem;
+  }
+
+  .select2-results{
+      color: var(--color-primary) !important;
+  }
+
+  .select2-selection__choice{
+      color: var(--color-primary) !important;
+  }
+  .select2-results__option{
+      color: var(--color-grey-light-4);
+      background: var(--color-primary) !important;
+  }
+
+  
+
+  .select2-container--classic .select2-search--inline .select2-search__field {
+    background: var(--color-primary);
+    color: var(--color-grey-light-4);
+  }
+
+
+  .select2-container--default .select2-selection--single .select2-selection__rendered{
+      color: var(--color-grey-dark-4);
+  }
+
+
+
+  .select-container label{
+    margin-top: 4rem;
+  }
+
+  /* button */
+
+  .submit {
+    background-color: #333333;
+    border: 2px solid white;
+    border-radius: 27px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 5rem;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    transition: all .3s;
+  }
+  .submit:hover, .submit:focus {
+    background-color: white;
+    color: #333333;                 
+    outline: 0;
+  }
+
+  .submit:active{
+    background-color: #333333;
+    color:white;
+  }
+
+  .submit:visited{
+    background-color: #333333;
+  }
 
 /********************************************************
 MAIN MOVIE
 ********************************************************/
 
+.mainMovies{
+    /* background-color: #60707F; */
+    box-shadow: 0rem 1rem 5rem rgba(0, 0, 0, .4);
+    background: linear-gradient(to bottom left, rgba(10, 16, 22, 0.287),rgba(96, 112, 127, 0.356));
+    
+}
+
 .mainMovie{
-    height: 44rem;
+    /* height: 44rem; */
     border: 1px solid black;
     display:flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 3rem;
     /* align-items: center;
     justify-content: center; */
 }
@@ -93,11 +295,30 @@ MAIN MOVIE
 .mainMovie__main{
     display:flex;
     flex-direction: row;
+    
+}
+
+
+@media only screen and (max-width: 
+    600px) {
+        .mainMovie__main {
+            display:flex;
+        flex-direction: column;
+        justify-content: center;
+        }
+    }
+
+.mainMovie__noMovie{
+    padding: 6rem;
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 3rem;
+    color: var(--color-grey-light-3);
 }
 
 .mainMovie__poster{
-    height: 32rem;
-    width: 20rem;
+    height: 47rem;
+    width: auto;
     margin-right: 2rem;
     flex: 0 0 40%;
     border: 1px solid black;
@@ -106,16 +327,37 @@ MAIN MOVIE
 }
 
 .mainMovie__poster img {
-   
-    /* background-size: cover; */
+    width:100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 
+    900px) {
+        .mainMovie__poster{
+            height: 20rem;
+            width: 10rem;
+        }
+    }
+
+
+.mainMovie__info--title{
+    color: var(--color-grey-light-1);
+    font-weight: bold;
+    font-size: 3.4rem;
 }
 
 .mainMovie__info--extra__add{
-    margin: 1rem 0;
+    margin: 2rem 0;
     display:flex;
     flex-direction: row;
-    font-size: 1.4rem;
+    font-size: 2.4rem;
+    color:var(--color-grey-light-4);
     
+}
+
+.mainMovie__info--extra__desc{
+    color:var(--color-grey-light-4);
+    font-size: 2.8rem;
 }
 
 .mainMovie__info--extra__add p:first-of-type {
@@ -124,49 +366,192 @@ MAIN MOVIE
 
 .mainMovie__buttons{
     align-self:  center;
-    margin-top: 4rem;
-    margin-bottom: 1rem;
+    margin-top: 7rem;
+    margin-bottom: 7rem;
+    transition: all .3s;
+    
 }
 
+@media only screen and (max-width: 
+    450px) {
+        .mainMovie__buttons{
+            display:flex;
+            flex-direction:column;
+        }
+
+        .mainMovie__buttons a{
+            padding: 1rem 3.5rem;
+            font-size: 1.25rem;
+        }
+
+        .mainMovie__buttons a:not(:last-of-type){
+            margin-bottom: 2rem;
+            
+        }
+    }
+
+
+
+
+.mainMovie__buttons a {
+    padding: 2rem 5rem;
+    background-color: #5D94CC;
+    border-radius: 10rem;
+    text-decoration: none;
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size:2.2rem;
+}
+
+@media only screen and (max-width: 
+    600px) {
+        .mainMovie__buttons a{
+            padding: 1.5rem 4rem;
+            font-size: 1.5rem;
+        }
+    }
+
+.mainMovie__buttons a:hover{
+    background-color: var(--color-tertiary);
+}
+
+
 .mainMovie__buttons a:first-of-type{
-    margin-right: 1rem;
+    margin-right: 1.5rem;
 }
 
 .simple-pagination{
     margin: 0 auto !important;
 }
 
+div.pagination.dark-theme.simple-pagination > ul > li > a{
+    background: linear-gradient(to top left, rgba(10, 16, 22, 0.774),rgba(96, 112, 127, 0.274));
+    color: var(--color-grey-dark-3);
+    font-weight:bold;
+    font-size: 2.2rem;
+    padding: 0.2rem 0.7rem;
+}
+
+div.pagination.dark-theme.simple-pagination > ul > li > a:active{
+    background: var(--color-primary);
+    color: var(--color-primary);
+    font-weight:bold;
+    font-size: 2.2rem;
+    padding: 0.2rem 0.7rem;
+}
+
+div.pagination.dark-theme.simple-pagination > ul > li.active > span{
+    background:var(--color-primary);
+    color: var(--color-light-4);
+    font-weight:bold;
+    font-size: 2.2rem;
+    padding: 0.2rem 0.7rem;
+}
+
+div.pagination.dark-theme.simple-pagination > ul > li.disabled > span {
+    background:var(--color-primary);
+    color: var(--color-light-4);
+    font-weight:bold;
+    font-size: 2.2rem;
+    padding: 0.2rem 0.7rem;
+}
+
+@media only screen and (max-width: 
+    450x) {
+        div.pagination.dark-theme.simple-pagination > ul > li > a,
+        div.pagination.dark-theme.simple-pagination > ul > li > a:active,
+        div.pagination.dark-theme.simple-pagination > ul > li.active > span,
+        div.pagination.dark-theme.simple-pagination > ul > li.disabled > span {
+           font-size: 1rem;
+        }
+    }
+
+
+
 /********************************************************
 MORE INFO
 ********************************************************/
 
 .moreInfoPage{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     /* height: 70rem; */
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: linear-gradient(to bottom left, rgba(10, 16, 22, 0.287),rgba(96, 112, 127, 0.356));
+    box-shadow: 0rem 1rem 5rem rgba(0, 0, 0, .4);
+    padding: 2rem;
+}
+
+.back{
+    margin-right:auto;
+    margin-top: 2rem;
+    margin-left:2rem;
+}
+
+.back__link{
+    text-decoration: none;
+    color: var(--color-grey-light-1);
+    margin-top: 10px;
+    font-size: 2.5rem;
+
+}
+
+a .back__link--label{
+    margin-top: 1rem;
+}
+
+.back__link::before{
+    content:"\003c";
+    font-size: 2.5rem;
+    margin-right: 1rem;
+    transform:translateY(1rem);
 }
 
 .moreInfoPage__title{
     margin-top: 3rem;
+    color: var(--color-grey-light-1);
+    font-weight: bold;
+    font-size: 3rem;
+
+}
+a.moreInfoPage__trailer{
+    padding: 2rem 5rem;
+    background-color: #5D94CC;
+    border-radius: 10rem;
+    text-decoration: none;
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size:2rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    transition: .3s all;
+}
+
+
+a.moreInfoPage__trailer:hover{
+    background-color: var(--color-tertiary);
 }
 
 .moreInfoPage__poster{
     border: 1px solid black;
-    height: 35rem;
-    width: 25rem;
+    height: 47rem;
+    width: 32rem;
     margin: 3rem 0;
     background-size: cover;
 }
 
 .moreInfoPage__details{
     display: flex;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    color: var(--color-secondary);
+    font-weight:bold;
+    font-size: 2.2rem;
 }
 
 .moreInfoPage__details p{
-    margin-right: 1rem;
+    margin-right: 1.5rem;
+  
 }
 
 .moreInfoPage__team {
@@ -174,38 +559,54 @@ MORE INFO
     flex-direction: column;
     align-self: flex-start;
     margin-left: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.moreInfoPage__team--Actors, .moreInfoPage__team--Director {
+   color:var(--color-grey-light-4);;
+    
+}
+
+.moreInfoPage__team--Label{
+    font-weight: bold;
+    color: var(--color-secondary);
 }
 
 .moreInfoPage__description{
     margin: 0 2rem 3rem ;
+    color:var(--color-grey-light-4);
+    font-size: 2.4rem;
 }
 
 .moreInfoPage__similarMovies{
     display:flex;
     flex-direction: column;
-    height: 20rem;
     width: 100%;
     align-items: center;
     margin-bottom: 2rem;
+    color: var(--color-secondary);
+    font-weight:bold;
 }
 
 .moreInfoPage__similarMovies p {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
 }
 
 .groupSimilar{
     display: flex;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
     
 }
 
 .similarMovie{
-    height: 15rem;
-    width: 10rem;
+    height: 21rem;
+    width: 14rem;
     border: 1px solid black;
-    margin-right: 1rem;
+    margin-right: 2.5rem;
     background-size: cover;
+
     
 }
 
@@ -214,6 +615,17 @@ MORE INFO
 }
 
 
+
+/********************************************************
+VIDEO POPUP
+********************************************************/
+
+.videopopupjs__block--notfound{
+    position: static;
+    background-color: var(--color-primary);
+    color: var(--color-grey-light-3);
+
+}
 
 
 

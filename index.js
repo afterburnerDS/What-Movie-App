@@ -202,12 +202,12 @@ function getIdFromApi(string) {
 function displayMovieSearchData(data) {
     //randomize a value from the array given
     //console.log(data.results[0].poster_path);
-     console.log(data.results);
-     if(data.results.length != 0){
+     console.log(data);
+     if(data!= 0){
         // movie = data.results[Math.floor(Math.random() * data.results.length)];
 
-        movies = data.results;
-        console.log(movies.length);
+        movies = data;
+        console.log(movies);
         // reset 
         newMovies = [];
         movieMoreInfo = [];
@@ -229,15 +229,40 @@ function displayMovieSearchData(data) {
 
         // setHomePage(movie);
      }else{
-         alert("No movie with these criteria");
+         // no movie with these criteria
+         //determine if mainMovie is displaying
+       
+         if(!$('*').hasClass("mainMovie")){
+            console.log("no movies");
+            
+            let noMovie = `<div class="mainMovie__main">
+            <p class="mainMovie__noMovie ">No Movie was found. Please try again !</p></div>`;
+            
+            $('.mainMovies').html(noMovie
+
+              );
+
+         }else{
+            $('.mainMovie__poster').addClass("nodisplay");
+            $('.mainMovie__info').addClass("nodisplay");
+            $('.mainMovie__buttons').addClass("nodisplay");
+            $('.pagination').addClass("nodisplay");
+            $('.mainMovie__noMovie').removeClass('nodisplay');
+
+            
+         }
+      
      }
 }
+
 
 function generateMainMovie(item, index, template){
     return `<div class="mainMovie mainMovie_${index}">
     <div class="mainMovie__main">
+    <p class="mainMovie__noMovie nodisplay">No Movie was found. Please try again !</p>
         <div class="mainMovie__poster mainMovie__poster_${index} "></div>
         <div class="mainMovie__info">
+            
             <p class="mainMovie__info--title mainMovie__info--title_${index}">Lorem ipsum dolor sit amet.</p>
             <div class="mainMovie__info--extra">
                 <div class="mainMovie__info--extra__add">
@@ -252,10 +277,10 @@ function generateMainMovie(item, index, template){
     <div class="mainMovie__buttons">
 
         <a href="#" class="mainMovie__buttons--trailer" video-url="https://www.youtube.com/watch?v=0wCC3aLXdOw">
-            View Trailer
+            VIEW TRAILER
         </a>
 
-        <a href="#" class="mainMovie__buttons--info">More Info</a>
+        <a href="#" class="mainMovie__buttons--info">MORE INFO</a>
     </div>
 
         <div class="pagination">
@@ -295,7 +320,7 @@ function renderMainMovies(newMovies){
             $(".pagination").pagination({ 
                 items: `${newMovies.length}`,
                 itemsOnPage: 1,
-                cssStyle: 'light-theme',
+                cssStyle: 'dark-theme',
     
                 onPageClick: function(pageNumber, event){
                     //selec the element selected
@@ -352,10 +377,10 @@ function setHomePage(movie,index) {
     //set the title, ratings, year and description
     const yearMain = new Date(movie.release_date).getFullYear();
     $(`.mainMovie__info--title_${index}`).text(`${movie.original_title} (${yearMain})`);
-    $(`.mainMovie__info--extra__add--rating_${index}`).text(`TMDB: ${movie.vote_average}/10`);
+    $(`.mainMovie__info--extra__add--rating_${index}`).text(`${movie.vote_average}/10`);
     //limit the overview to 30 characters
     if (movie.overview.length > 60) {
-        let truncated = movie.overview.substr(0, 200) + '...';
+        let truncated = movie.overview.substr(0, 150) + '...';
         $(`.mainMovie__info--extra__desc_${index}`).text(`${truncated}`)
     } else {
         $(`.mainMovie__info--extra__desc_${index}`).text(`${movie.overview}`)
@@ -381,7 +406,7 @@ function setHomePage(movie,index) {
     //     $(`.mainMovie__info--extra__add--genres_${index}`).text(`${genresMovies[0]}`);
     // }
 
-    $(`.mainMovie__info--extra__add--genres_${index}`).text(`${genresMovies.toString()}`);
+    $(`.mainMovie__info--extra__add--genres_${index}`).text(`${genresMovies.toString().replace(/,/g, " ")}`);
 }
 
 // function setHomePage(movie,index) {
@@ -430,15 +455,16 @@ function handleSubmitInfo() {
         //find actor, director and genre
         let actor = $('.actor').val();
         let director = $('.director').val();
-        let genre = $('.genre').val();
+        let genres = $('.genre').val();
         let rating = $('.rating').val();
 
+        console.log(genres.toString());
         console.log(rating);
-        let decade = [" "," "]
-        decade = $('.decade').val().split(" ");
+         
+         let decades = $('.decade').val();
         console.log(decade);
-        let language = $('.language').val();
-        console.log(language);
+        let languages = $('.language').val();
+         console.log(language);
 
         Promise.all([
             getIdFromApi(actor),
@@ -446,6 +472,7 @@ function handleSubmitInfo() {
         ]).then(function (data) {
 
             const actorData = data[0];
+            console.log(actorData);
             const directorData = data[1];
             let idActor = 0;
             let idDirector = 0;
@@ -461,14 +488,135 @@ function handleSubmitInfo() {
                 idDirector = "";
             }
 
-            if (decade[1] === undefined){
-                
-                decade[1] = "";
+
+            let promiseArrayDecades = [];
+          
+            let promiseArrayMovies = [];
+            // console.log(decades);
+            if(genres.length != 0){
+                console.log(genres);
+                genres.forEach(function(genre){
+                    if(decades != 0){
+                        decades.forEach(function(decade){
+                            let newDecade = decade.split(" ");
+                            if(languages !=0){
+                                console.log("generos + decada + linguagem ");
+                                languages.forEach(function(language){
+
+                                    promiseArrayMovies.push(getMoviesFromApi(idActor,idDirector,genre,rating, newDecade[0], newDecade[1], language));
+                                });
+                                
+                            }else{
+                                console.log("generos + decada ");
+                                promiseArrayMovies.push(getMoviesFromApi(idActor, idDirector, genre,rating,newDecade[0],newDecade[1],""));
+                            }
+                        })
+                    }else if(languages !=0){
+
+                         console.log("generos + linguagens");
+                        languages.forEach(function(language){
+
+                            promiseArrayMovies.push(getMoviesFromApi(idActor,idDirector,genre,rating, "", "", language));
+                        });
+                        
+                        
+                    }else {
+                        console.log("generos");
+                        promiseArrayMovies.push(getMoviesFromApi(idActor,idDirector,genre,rating, "", "", ""));
+                    }
+
+                });
+
+                return Promise.all(promiseArrayMovies);
             }
+            else if(decades.length != 0){
+                console.log("aqui com decada");
+
+                decades.forEach(function(decade){
+                    let newDecade = decade.split(" ");
+                    
+                    if(languages.length != 0){
+                        console.log("aqui com linguagem");
+                        languages.forEach(function(language){
+                            
+                             promiseArrayMovies.push(getMoviesFromApi(idActor,idDirector,genres.toString(),rating,newDecade[0], newDecade[1], language));
+                        });
+                    }else{
+                        console.log("aqui sem linguagem");
+                        promiseArrayMovies.push(getMoviesFromApi(idActor,idDirector,genres.toString(),rating,newDecade[0], newDecade[1], ""));
+                        
+                    }
+                });
+               
+                
+                 console.log(promiseArrayMovies);
+                 return Promise.all(promiseArrayMovies);
+
+            }else if(languages.length != 0){
+                
+                promiseArrayMovies = languages.map(function(elem,index){
+
+                    return getMoviesFromApi(idActor,idDirector,genres.toString(),rating,"","", elem);
+                });
+                // console.log(promiseArrayMovies);
+                return Promise.all(promiseArrayMovies);
+                    
+            }else{
+
+                console.log("idactor " + idActor + " id crew " + idDirector + " genres " + genres.toString() + " rating " + rating + " decadeLow " + "" + " decadeHigh "+""+ " language " + "" );
+                
+                    return getMoviesFromApi(idActor, idDirector, genres.toString(),rating,"","","");
+                
+
+               
+            }
+
            
-            console.log("idactor " + idActor + " id crew " + idDirector + " id genre " + genre + " id rating " + rating + " decadeLow " + decade[0] + " decadeHigh "+decade[1]+ " language " + language );
-            return getMoviesFromApi(idActor,idDirector
-                , genre, rating, decade[0], decade[1], language);
+            // console.log("idactor " + idActor + " id crew " + idDirector + " id genre " + genre + " id rating " + rating + " decadeLow " + decade[0] + " decadeHigh "+decade[1]+ " language " + language );
+            // return getMoviesFromApi(idActor,idDirector
+            //     , genre, rating, decade[0], decade[1], language);
+
+        })
+        
+        .then(function(data){
+
+            
+            let oldMovies = [];
+            let newMovies =[]
+            let actualMovies = [];
+            if(data.constructor == Array){
+
+                console.log("cheguei")
+                for(let i = 0; i< data.length; i++){
+                    console.log(data[i].results);
+                    newMovies = oldMovies.concat(data[i].results);
+                    oldMovies = newMovies;
+                }
+    
+            
+                
+                if(newMovies.length > 20){
+    
+                    //randomize newMovies and filter to only 20
+                    actualMovies = shuffle(newMovies).filter(function(elem,index){
+                        return index < 20;
+                    });
+                } else{
+    
+                    //only randomize newMovies
+    
+                    actualMovies = shuffle(newMovies);
+                }
+    
+                console.log(actualMovies);
+                return actualMovies;
+            }else{
+
+                //randomize
+                actualMovies = shuffle(data.results);
+                console.log(actualMovies);
+                return actualMovies;
+            }
 
         }).then(displayMovieSearchData);
         
@@ -481,17 +629,17 @@ function handleSubmitInfo() {
 
 
 
-        //     const creditPromises = data.results.map(function (movie) {
+            // const creditPromises = data.results.map(function (movie) {
 
 
-        //         //lets find the director in these movies and see if it corresponds to  the director we want
+            //     //lets find the director in these movies and see if it corresponds to  the director we want
 
-        //         return getCreditsfromApi(movie.id);
-        //     });
+            //     return getCreditsfromApi(movie.id);
+            // });
 
-        //     return Promise.all(creditPromises);
+            // return Promise.all(creditPromises);
 
-        // }).then(function (data) {
+        // // }).then(function (data) {
 
         //     console.log("array of credits");
         //     console.log(data);
@@ -519,9 +667,30 @@ function handleSubmitInfo() {
         // })
         // 
         // movieMoreInfo = movie;
-          handleViewTrailer();
+        //   handleViewTrailer();
     });
 }
+
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+  
 
 
 
@@ -589,7 +758,7 @@ function displayMoreInfo() {
            
         });
         
-            $('.moreInfoPage__details--genres').text(`${genresMoviesMoreInfo.toString()}`);
+            $('.moreInfoPage__details--genres').text(`${genresMoviesMoreInfo.toString().replace(/,/g, " ")}`);
 
     });
 
@@ -629,7 +798,7 @@ function displayMoreInfo() {
             }
         }   
 
-        $('.moreInfoPage__team--Actors').text(`Stars: ${star1}  ${star2}  ${star3}`);
+        $('.moreInfoPage__team--Actors').text(`${star1}, ${star2}, ${star3}`);
 
         //in the arry of crew, find the string directing and return the name
 
@@ -644,7 +813,7 @@ function displayMoreInfo() {
 
         console.log(nameDirector);
 
-        $('.moreInfoPage__team--Director').text(`Director: ${nameDirector.toString()}`);
+        $('.moreInfoPage__team--Director').text(`${nameDirector.toString().replace(/,/g, ", ")}`);
 
         console.log(data[1].results);
 
@@ -792,9 +961,40 @@ function handleViewTrailer() {
 
 }
 
+function handleDropdown(){
+     
+	let $html = $('html');
+  
+    $html.on('click.ui.dropdown', '.js-dropdown', function(e) {
+      e.preventDefault();
+      $(this).toggleClass('is-open');
+    });
+    
+    $html.on('click.ui.dropdown', '.js-dropdown [data-dropdown-value]', function(e) {
+      e.preventDefault();
+      var $item = $(this);
+      var $dropdown = $item.parents('.js-dropdown');
+      $dropdown.find('.js-dropdown__input').val($item.data('dropdown-value'));
+      $dropdown.find('.js-dropdown__current').text($item.text());
+    });
+    
+    $html.on('click.ui.dropdown', function(e) {
+      var $target = $(e.target);
+      if (!$target.parents().hasClass('js-dropdown')) {
+        $('.js-dropdown').removeClass('is-open');
+      }
+    });
+}
+
 function handleMovies() {
     handleSubmitInfo();
     handleMoreInfo();
+    handleDropdown();
+    $('.js-example-basic-multiple').select2({
+        theme: "classic",
+        maximumSelectionLength: 3
+    });
+    $('.js-example-basic-single').select2();
  
  
     

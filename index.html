@@ -6,19 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="video.popup.css">
-    <link rel="stylesheet" href="index.css">
+   
     <link rel="stylesheet" href="simplePagination.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Aladin" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+
     <title>What Movie Today ?</title>
 </head>
 
 <body>
     <div class="container">
         <header role="banner">
-            <div class="back visibility">
-                <a class="back__link" href="#">back</a>
-            </div>
+           
             <div class="titles">
+                <img src="cinema-premier.png" alt="logo app">
                 <p>What Movie ?</p>
+                
             </div>
 
             <div class="hidden"></div>
@@ -26,39 +32,53 @@
         <main role="main" class="content">
             <div class="mainPage ">
                 <form class="searchMovie">
-
-                    <label for="actor">Cast</label>
-                    <input placeholder='Tom Hanks' type="text" id='actor' class="actor" />
-
-                    <label for="director">Crew</label>
-                    <input placeholder='Martin Scorsese' type="text" id='director' class="director" />
-
+                    
+                    <div class="input-container">
+                            <p>(Write a name of person in the cast. The more specific the better the results! Optional)</p>
+                        <label>
+                               
+                            <input placeholder="Tom Hanks" type="text" id='actor' class="actor" />
+                            <div class="label-text">Cast</div>
+                        </label>
+                    </div>
+                    
+                    <div class="input-container">
+                            <p>(Write a name of person in the crew. The more specific the better the results! Optional)</p>
+                        <label>
+                            <input placeholder="Steven Spielberg"type="text" id='director' class="director" />
+                            <div class="label-text">Crew</div>
+                        </label>
+                    </div>
+                   <div class="select-container">
+                        <p>(Select a maximum of 3 genres to include in the search. Optional)</p>
                     <label for="genres">Genre</label>
-                    <select name="genres" id="genres" class="genre">
-                        <option value=""></option>
-                        <option value="28">Action</option>
-                        <option value="12">Adventure</option>
-                        <option value="16">Animation</option>
-                        <option value="35">Comedy</option>
-                        <option value="80">Crime</option>
-                        <option value="99">Documentary</option>
-                        <option value="18">Drama</option>
-                        <option value="10751">Family</option>
-                        <option value="14">Fantasy</option>
-                        <option value="36">History</option>
-                        <option value="27">Horror</option>
-                        <option value="10402">Music</option>
-                        <option value="9648">Mystery</option>
-                        <option value="10749">Romance</option>
-                        <option value="878">Science Fiction</option>
-                        <option value="10770">TV Movie</option>
-                        <option value="53">Thriller</option>
-                        <option value="10752">War</option>
-                        <option value="37">Western</option>
-                    </select>
-
-                    <label for="rating">IMDB Rating</label>
-                    <select name="rating" id="rating" class="rating">
+                         <select name="genresSelect[]" multiple="multiple" id="genres" class="js-example-basic-multiple genre selectorMultiple" style="width: 100%">
+                                <option value=""></option>
+                                <option value="28">Action</option>
+                                <option value="12">Adventure</option>
+                                <option value="16">Animation</option>
+                                <option value="35">Comedy</option>
+                                <option value="80">Crime</option>
+                                <option value="99">Documentary</option>
+                                <option value="18">Drama</option>
+                                <option value="10751">Family</option>
+                                <option value="14">Fantasy</option>
+                                <option value="36">History</option>
+                                <option value="27">Horror</option>
+                                <option value="10402">Music</option>
+                                <option value="9648">Mystery</option>
+                                <option value="10749">Romance</option>
+                                <option value="878">Science Fiction</option>
+                                <option value="10770">TV Movie</option>
+                                <option value="53">Thriller</option>
+                                <option value="10752">War</option>
+                                <option value="37">Western</option>
+                            </select>
+                        </div>
+                        <div class="select-container">
+                            <p>(Select the rating to include in the search. Optional)</p>
+                    <label for="rating">TMDB Rating</label>
+                    <select name="rating" id="rating" class="js-example-basic-single rating"style="width: 100%" >
                         <option value=""></option>
                         <option value="9.0">>9</option>
                         <option value="8.0">>8</option>
@@ -70,9 +90,11 @@
                         <option value="2">>2</option>
                         <option value="1">>1</option>
                     </select>
-
+                </div>
+                <div class="select-container">
+                    <p>(Select a maximum of 3 decades to include in the search. Optional)</p>
                     <label for="decade">Decade</label>
-                    <select name="decade" id="decade" class="decade">
+                    <select name="decade" id="decade" class="decade js-example-basic-multiple" multiple="multiple"style="width: 100%">
                         <option value=""></option>
                         <option value="2010 2020">2010s</option>
                         <option value="2000 2010">2000s</option>
@@ -87,9 +109,11 @@
                         <option value="1910 1920">1910s</option>
                         <option value="1900 1910">1900s</option>
                     </select>
-
+                </div>
+                <div class="select-container">
+                    <p>(Select a maximum of 3 languages to include in the search. Optional)</p>
                     <label for="language">Language</label>
-                    <select name="language" id="language" class="language">
+                    <select name="language" id="language" class="language js-example-basic-multiple" multiple="multiple" style="width: 100%">
                         <option value=""></option>
                         <option value="en">English</option>
                         <option value="es">Spanish</option>
@@ -102,55 +126,36 @@
                         <option value="hi">Hindi</option>
                         <option value="pt">Portuguese</option>
                     </select>
+                </div>
+                    
 
                     <input type="submit" name="submit" value="Submit" class="submit">
                 </form>
                     
                 <div class="mainMovies">
-                    <!-- <div class="mainMovie">
-                        <div class="mainMovie__main">
-                            <div class="mainMovie__poster "></div>
-                            <div class="mainMovie__info">
-                                <p class="mainMovie__info--title">Lorem ipsum dolor sit amet. <span> class="mainMovie__info--year></span>/p>
-                                
-                                <div class="mainMovie__info--extra">
-                                    <div class="mainMovie__info--extra__add">
-                                        <p class="mainMovie__info--extra__add--rating">rating</p>
-                                        <p class="mainMovie__info--extra__add--genres">genres</p>
-                                    </div>
-                                    <p class="mainMovie__info--extra__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi quod ipsam deleniti
-                                        at dolores harum eveniet. Quis, nulla similique! Aliquam!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mainMovie__buttons">
-
-                            <a href="#" class="mainMovie__buttons--trailer" id="video1" video-url="https://www.youtube.com/watch?v=0wCC3aLXdOw">
-                                View Trailer
-                            </a>
-
-                            <a href="#" class="mainMovie__buttons--info">More Info</a>
-                        </div>
-
-                        
-                    </div> -->
                     
                 </div>
                 
             </div>
 
             <div class="moreInfoPage nodisplay ">
-                <div class="moreInfoPage__title"></div>
+                
+                     <div class="back visibility">
+                <a class="back__link" href="#"><span class="back__link--label">Main Page</span></a>
+            </div>
+            <div class="moreInfoPage__title"></div>
+             
+                
                 <div class="moreInfoPage__poster"></div>
-                <a id="video2" video-url="https://www.youtube.com/watch?v=0wCC3aLXdOw" href="#" class="moreInfoPage__trailer mainMovie__buttons--trailer">View Trailer</a>
+                <a id="video2" video-url="https://www.youtube.com/watch?v=0wCC3aLXdOw" href="#" class="moreInfoPage__trailer mainMovie__buttons--trailer">VIEW TRAILER</a>
                 <div class="moreInfoPage__details">
                     <p class="moreInfoPage__details--rating">Rating</p>
                     <p class="moreInfoPage__details--Country">Country</p>
                     <p class="moreInfoPage__details--genres">Genres</p>
                 </div>
                 <div class="moreInfoPage__team">
-                    <p class="moreInfoPage__team--Director">Director</p>
-                    <p class="moreInfoPage__team--Actors">Actors</p>
+                    <p><span class="moreInfoPage__team--Label">Director:  </span><span class="moreInfoPage__team--Director"></span></p>
+                    <p ><span class="moreInfoPage__team--Label">Stars: </span><span class="moreInfoPage__team--Actors"></span></p>
                 </div>
                 <div class="moreInfoPage__description">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores dolore magnam ducimus ullam officiis
@@ -188,6 +193,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="video.popup.js"></script>
     <script type="text/javascript" src="jquery.simplePagination.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="index.js"></script>
 </body>
 
