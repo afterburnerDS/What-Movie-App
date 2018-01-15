@@ -371,9 +371,13 @@ function renderMainMovies(newMovies){
 function setHomePage(movie,index) {
      console.log(movie);
     //set the poster of the movie given
-    $(`.mainMovie__poster_${index}`).css({
-        "background-image": `url(https://image.tmdb.org/t/p/w640${movie.poster_path})`
-    });
+    // $(`.mainMovie__poster_${index}`).css({
+    //     "background-image": `url(https://image.tmdb.org/t/p/w640${movie.poster_path})`
+    // });
+
+    $(`.mainMovie__poster_${index}`).html(
+        `<img src="https://image.tmdb.org/t/p/w640${movie.poster_path}"></img>`
+    );
     //set the title, ratings, year and description
     const yearMain = new Date(movie.release_date).getFullYear();
     $(`.mainMovie__info--title_${index}`).text(`${movie.original_title} (${yearMain})`);
@@ -721,9 +725,13 @@ function displayMoreInfo() {
     const year = new Date(movieMoreInfo.release_date).getFullYear();
     $(".moreInfoPage__title").text(`${movieMoreInfo.original_title} (${year})`);
     //display the movie poster
-    $(".moreInfoPage__poster").css({
-        "background-image": `url(https://image.tmdb.org/t/p/w640${movieMoreInfo.poster_path})`
-    });
+    // $(".moreInfoPage__poster").css({
+    //     "background-image": `url(https://image.tmdb.org/t/p/w640${movieMoreInfo.poster_path})`
+    // });
+
+    $(".moreInfoPage__poster").html(
+        `<img src="https://image.tmdb.org/t/p/w640${movieMoreInfo.poster_path}"></img>`
+    );
 
     $(".moreInfoPage__details--rating").text(`TMDB: ${movieMoreInfo.vote_average}/10`);
     //get the year from the date

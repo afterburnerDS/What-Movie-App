@@ -124,40 +124,44 @@ FORM
 .searchMovie{
     display:flex;
     flex-direction: column;
-    margin-bottom: 4rem;
+    margin-bottom: 10rem;
     margin-top: 3rem;
 }
 
 /* input */
 
 .input-container {
-    padding: 20px 0 0px;
+    padding: 0 2rem;
     text-align: center;
     margin-bottom: 15rem;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    
   }
 
-  .input-container:last-of-type{
-      margin-bottom:5rem;
-  }
+  
 
   .input-container p{
-    transform: translateY(-7rem);
+    /* transform: translateY(-7rem); */
     color: #9B9B9B;
+   
   }
+
+ 
 
   .input-container label {
     font-weight: 500;
     letter-spacing: 4px;
-  }
-
-  .input-container label .label-text {
     color: #9B9B9B;
     cursor: text;
     font-size: 3rem;
     line-height: 2rem;
-    transform: translateY(-74px);
+    /* transform: translateY(-74px); */
     transition: all 0.3s;
     font-weight: 700;
+    margin-bottom: 3rem;
+    margin-top: 4rem;
     
   }
 
@@ -174,11 +178,13 @@ FORM
     text-align: center;
     transition: all 0.3s;
     width: 30rem;
+    
   }
 
   .input-container input:focus {
     width: 35rem;
     border-bottom: 2px solid var(--color-secondary);
+    font-size: 2rem;
   }
 
   .input-container input:focus + .label-text {
@@ -193,8 +199,10 @@ FORM
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin-bottom: 10rem;
+      margin-bottom: 15rem;
       margin-top: 0;
+      padding-right: 3rem;
+      padding-left: 3rem;
   }
 
   .select-container p {
@@ -225,10 +233,12 @@ FORM
     transition: all 0.3s;
     font-weight: 700;
     margin-bottom: 3rem;
+    margin-top: 4rem;
   }
 
   .select2-results{
       color: var(--color-primary) !important;
+
   }
 
   .select2-selection__choice{
@@ -252,11 +262,6 @@ FORM
   }
 
 
-
-  .select-container label{
-    margin-top: 4rem;
-  }
-
   /* button */
 
   .submit {
@@ -266,10 +271,10 @@ FORM
     color: white;
     cursor: pointer;
     font-size: 20px;
-    margin-top: 5rem;
     padding: 15px 30px;
     text-transform: uppercase;
     transition: all .3s;
+    margin: 0 2rem 0 2rem;
   }
   .submit:hover, .submit:focus {
     background-color: white;
@@ -294,6 +299,7 @@ MAIN MOVIE
     /* background-color: #60707F; */
     box-shadow: 0rem 1rem 5rem rgba(0, 0, 0, .4);
     background: linear-gradient(to bottom left, rgba(10, 16, 22, 0.287),rgba(96, 112, 127, 0.356));
+    margin: 0 2rem 0 2rem;
     
 }
 
@@ -337,7 +343,7 @@ MAIN MOVIE
     width: auto;
     margin-right: 2rem;
     flex: 0 0 40%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
    background-size: cover;
 
 }
@@ -347,13 +353,16 @@ MAIN MOVIE
     height: 100%;
 }
 
-/* @media only screen and (max-width: 
-    900px) {
+@media only screen and (max-width: 
+    600px) {
         .mainMovie__poster{
             
-            max-height: 35rem;
+            padding: 2rem;
+            
         }
-    } */
+    } 
+    
+    
 
 
 .mainMovie__info--title{
@@ -393,16 +402,8 @@ MAIN MOVIE
         .mainMovie__buttons{
             display:flex;
             flex-direction:column;
-        }
-
-        .mainMovie__buttons a{
-            padding: 1rem 3.5rem;
-            font-size: 1.25rem;
-        }
-
-        .mainMovie__buttons a:not(:last-of-type){
-            margin-bottom: 2rem;
-            
+            justify-content: center;
+            align-items: center;
         }
     }
 
@@ -417,6 +418,7 @@ MAIN MOVIE
     color: var(--color-primary);
     font-weight: bold;
     font-size:2.2rem;
+    text-align: center;
 }
 
 @media only screen and (max-width: 
@@ -424,6 +426,21 @@ MAIN MOVIE
         .mainMovie__buttons a{
             padding: 1.5rem 4rem;
             font-size: 1.5rem;
+        }
+    }
+
+    @media only screen and (max-width: 
+    450px) {
+
+        .mainMovie__buttons a{
+            padding: 1rem 3.5rem;
+            font-size: 1.25rem;
+        }
+
+        .mainMovie__buttons a:not(:last-of-type){
+            margin-bottom: 2rem;
+            margin-left: 1.4rem;
+            
         }
     }
 
@@ -559,12 +576,20 @@ a.moreInfoPage__trailer:hover{
 }
 
 .moreInfoPage__poster{
-    border: 1px solid black;
-    height: 47rem;
-    width: 32rem;
-    margin: 3rem 0;
+    
+    margin-top: 3rem 0;
     background-size: cover;
+    
+    
 }
+
+.moreInfoPage__poster img {
+    height: 65rem;
+    padding: 5rem;
+    /* margin: 0 2rem -4rem 2rem; */
+    margin-bottom: -4rem;    
+}
+
 
 .moreInfoPage__details{
     display: flex;
@@ -646,6 +671,25 @@ a.moreInfoPage__trailer:hover{
     
 }
 
+@media only screen and (max-width: 
+    900px) {
+        .similarMovie:last-of-type{
+            display:none;
+           
+        }
+
+        .similarMovie1{
+            display:none;
+        }
+
+        .similarMovie{
+            margin-right: 4rem;
+            height: 24rem;
+            width: 17rem;
+        }
+
+        
+    }
 
 @media only screen and (max-width: 
     600px) {
