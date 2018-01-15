@@ -397,7 +397,17 @@ MAIN MOVIE
     color: var(--color-grey-light-1);
     font-weight: bold;
     font-size: 3.4rem;
+    text-align: center;
 }
+
+@media only screen and (max-width: 
+450px) {
+    .mainMovie__info--title{
+        
+        font-size: 2.6rem;
+        
+        
+    }
 
 .mainMovie__info--extra__add{
     margin: 2rem 0;
@@ -408,10 +418,30 @@ MAIN MOVIE
     
 }
 
+@media only screen and (max-width: 
+450px) {
+    .mainMovie__info--extra__add{
+        
+        font-size: 1.6rem;
+        
+        
+    }
+
+
 .mainMovie__info--extra__desc{
     color:var(--color-grey-light-4);
     font-size: 2.8rem;
 }
+
+@media only screen and (max-width: 
+450px) {
+    .mainMovie__info--extra__desc{
+        
+        font-size: 2rem;
+        
+        
+    }
+} 
 
 .mainMovie__info--extra__add p:first-of-type {
     margin-right: 2rem;
