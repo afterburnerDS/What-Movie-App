@@ -774,6 +774,9 @@ a.moreInfoPage__trailer:hover{
             width: 17rem;
         }
 
+        .similarMovie4{
+            margin-right:0;
+        }
         
     }
 
@@ -793,10 +796,17 @@ a.moreInfoPage__trailer:hover{
         }
 
         .similarMovie{
-            margin-right: 2rem;
             height: 20rem;
             width: 13rem;
             
+        }
+
+        .similarMovie3{
+            margin-right: 2rem;
+        }
+
+        .similarMovie4{
+            margin-right: 0rem;
         }
     }
 
