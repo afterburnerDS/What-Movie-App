@@ -357,11 +357,35 @@ MAIN MOVIE
     height: 100%;
 }
 
+
+@media only screen and (max-width: 
+    800px) {
+        .mainMovie__poster{
+            
+            height: 40rem;
+        
+            
+            
+        }
+    }
+
 @media only screen and (max-width: 
     600px) {
         .mainMovie__poster{
             
             padding: 2rem;
+            
+            
+        }
+    }
+    
+    
+    @media only screen and (max-width: 
+    450px) {
+        .mainMovie__poster{
+            
+            height: 32rem;
+            
             
         }
     } 
@@ -581,11 +605,17 @@ a.moreInfoPage__trailer:hover{
 
 .moreInfoPage__poster{
     
-    margin-top: 3rem 0;
+    margin-top: 3rem 3rem;
     background-size: cover;
+    
+
+    
     
     
 }
+
+
+
 
 .moreInfoPage__poster img {
     height: 65rem;
@@ -593,6 +623,14 @@ a.moreInfoPage__trailer:hover{
     /* margin: 0 2rem -4rem 2rem; */
     margin-bottom: -4rem;    
 }
+
+@media only screen and (max-width: 
+    600px) {
+        .moreInfoPage__poster img{
+            height: 45rem;
+            
+        }
+    }
 
 
 .moreInfoPage__details{
