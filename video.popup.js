@@ -92,7 +92,6 @@
         $(this).off('click');
         $(this).on('click', function (event) {
              event.preventDefault();
-             console.log("inside videopopup click");
             var videoUrl = $(this).attr("video-url");
             var videoIframe = mountEmbedLink(videoUrl);
 

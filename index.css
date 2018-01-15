@@ -261,6 +261,10 @@ FORM
       color: var(--color-grey-dark-4);
   }
 
+  .select2-container--classic .select2-selection--multiple .select2-selection__choice__remove{
+      color: var(--color-primary);
+  }
+
 
   /* button */
 

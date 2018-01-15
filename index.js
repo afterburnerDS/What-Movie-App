@@ -200,15 +200,11 @@ function getIdFromApi(string) {
 }
 
 function displayMovieSearchData(data) {
-    //randomize a value from the array given
-    //console.log(data.results[0].poster_path);
-     console.log(data);
-     if(data!= 0){
-        // movie = data.results[Math.floor(Math.random() * data.results.length)];
 
+     if(data!= 0){
         movies = data;
-        console.log(movies);
-        // reset 
+        
+        // reset global vairables
         newMovies = [];
         movieMoreInfo = [];
         moviePreviousSelected = 0;
@@ -217,30 +213,23 @@ function displayMovieSearchData(data) {
 
         for(let i = 0; i<movies.length; i++){
             //choosing one movie from the list of movies
-            // let randMovieIndex = Math.floor(Math.random() * movies.length);
             movie = movies[i];
             //include in the new list movies
             newMovies.push(movie);
-            //remove the movie from the list
-            // movies.splice(randMovieIndex, 1);
         }
 
         renderMainMovies(newMovies);
 
-        // setHomePage(movie);
      }else{
          // no movie with these criteria
          //determine if mainMovie is displaying
        
          if(!$('*').hasClass("mainMovie")){
-            console.log("no movies");
             
             let noMovie = `<div class="mainMovie__main">
             <p class="mainMovie__noMovie ">No Movie was found. Please try again !</p></div>`;
             
-            $('.mainMovies').html(noMovie
-
-              );
+            $('.mainMovies').html(noMovie);
 
          }else{
             $('.mainMovie__poster').addClass("nodisplay");
@@ -291,31 +280,21 @@ function generateMainMovie(item, index, template){
 }
 
 function generateMainMoviesString(newMovies){
+    //for every movie retrieved generate div with all the information
     let items = newMovies.map(function(elem,index){
         return generateMainMovie(elem, index);
-        // console.log("generatemovies" + index);
-        // console.log(generateMainMovie(elem, index));
         
     });
-
-    console.log("items");
-    // console.log(items.join(""));
 
     return items.join("");
 }
 
 function renderMainMovies(newMovies){
-    // console.log("newMovies");
-    // console.log(newMovies)
+
     const mainMoviesString = generateMainMoviesString(newMovies);
   // insert that HTML into the DOM
-//   console.log("render movies");
-//   console.log(mainMoviesString);
   $('.mainMovies').html(mainMoviesString);
-  
-    
-  console.log("new Movies  length")
-        console.log(newMovies.length);
+  //pagination logic
         $(function() {
             $(".pagination").pagination({ 
                 items: `${newMovies.length}`,
@@ -324,8 +303,6 @@ function renderMainMovies(newMovies){
     
                 onPageClick: function(pageNumber, event){
                     //selec the element selected
-                    console.log(event.currentTarget);
-                   
                     if($(event.currentTarget).text() === "Prev"){
                          movieIndexSelected = moviePreviousSelected -1;
                          movie = newMovies[movieIndexSelected];
@@ -343,8 +320,6 @@ function renderMainMovies(newMovies){
                     $(`.mainMovie_${movieIndexSelected}`).removeClass("nodisplay");
                     moviePreviousSelected =  movieIndexSelected
                     //handles for view trailer e moreinfo
-                    console.log("chosen movie");
-                    console.log(movie);
                     movieMoreInfo = movie;
                     handleViewTrailer();
                     handleMoreInfo();
@@ -369,20 +344,16 @@ function renderMainMovies(newMovies){
 }
 
 function setHomePage(movie,index) {
-     console.log(movie);
+    
     //set the poster of the movie given
-    // $(`.mainMovie__poster_${index}`).css({
-    //     "background-image": `url(https://image.tmdb.org/t/p/w640${movie.poster_path})`
-    // });
-
     $(`.mainMovie__poster_${index}`).html(
-        `<img src="https://image.tmdb.org/t/p/w640${movie.poster_path}"></img>`
+        `<img src="https://image.tmdb.org/t/p/w640${movie.poster_path}" alt="poster movie"></img>`
     );
     //set the title, ratings, year and description
     const yearMain = new Date(movie.release_date).getFullYear();
     $(`.mainMovie__info--title_${index}`).text(`${movie.original_title} (${yearMain})`);
     $(`.mainMovie__info--extra__add--rating_${index}`).text(`${movie.vote_average}/10`);
-    //limit the overview to 30 characters
+    //limit the overview to 150 characters
     if (movie.overview.length > 60) {
         let truncated = movie.overview.substr(0, 150) + '...';
         $(`.mainMovie__info--extra__desc_${index}`).text(`${truncated}`)
@@ -390,13 +361,13 @@ function setHomePage(movie,index) {
         $(`.mainMovie__info--extra__desc_${index}`).text(`${movie.overview}`)
     }
 
-    //find the list of genres, map the names and  limit to 2 genres to display
-    console.log(movie.genre_ids);
+    //find the list of genres, map the names
+    
 
     const genresMovies = movie.genre_ids.map(function (elem1, index1) {
         genres.map(function (elem2, index2) {
             if (elem2.id == elem1) {
-                // console.log(elem2.name);
+                
                 elem1 = elem2.name;
             }
         });
@@ -404,79 +375,31 @@ function setHomePage(movie,index) {
         return elem1;
     });
 
-    // if (genresMovies[1] != "" && genresMovies[1] != undefined) {
-    //     $(`.mainMovie__info--extra__add--genres_${index}`).text(`${genresMovies[0]}, ${genresMovies[1]}`);
-    // } else {
-    //     $(`.mainMovie__info--extra__add--genres_${index}`).text(`${genresMovies[0]}`);
-    // }
 
     $(`.mainMovie__info--extra__add--genres_${index}`).text(`${genresMovies.toString().replace(/,/g, " ")}`);
 }
-
-// function setHomePage(movie,index) {
-//     // console.log(movie);
-//     //set the poster of the movie given
-//     $('.mainMovie__poster').css({
-//         "background-image": `url(https://image.tmdb.org/t/p/w640${movie.poster_path})`
-//     });
-//     //set the title, ratings, genres and description
-//     $('.mainMovie__info--title').text(`${movie.original_title}`);
-//     $('.mainMovie__info--extra__add--rating').text(`TMDB Rating: ${movie.vote_average}/10`);
-//     $('.mainMovie__info--extra__add--rating').text(`TMDB: ${movie.vote_average}/10`);
-//     //limit the overview to 30 characters
-//     if (movie.overview.length > 60) {
-//         let truncated = movie.overview.substr(0, 200) + '...';
-//         $('.mainMovie__info--extra__desc').text(`${truncated}`)
-//     } else {
-//         $('.mainMovie__info--extra__desc').text(`${movie.overview}`)
-//     }
-
-//     //find the list of genres, map the names and  limit to 2 genres to display
-
-//     const genresMovies = movie.genre_ids.map(function (elem1, index1) {
-//         genres.map(function (elem2, index2) {
-//             if (elem2.id == elem1) {
-//                 console.log(elem2.name);
-//                 elem1 = elem2.name;
-//             }
-//         });
-
-//         return elem1;
-//     });
-//     if (genresMovies[1] != "" && genresMovies[1] != undefined) {
-//         $('.mainMovie__info--extra__add--genres').text(`${genresMovies[0]}, ${genresMovies[1]}`);
-//     } else {
-//         $('.mainMovie__info--extra__add--genres').text(`${genresMovies[0]}`);
-//     }
-// }
 
 function handleSubmitInfo() {
     //Submit parameters from the input to the API to get an array that fits the parameters
     $(".submit").off('click');
     $(".submit").on('click', function (event) {
         event.preventDefault();
-        // alert("submited");
-        //find actor, director and genre
+
+        //find actor, director, genre, rating, decades, languages
         let actor = $('.actor').val();
         let director = $('.director').val();
         let genres = $('.genre').val();
         let rating = $('.rating').val();
-
-        console.log(genres.toString());
-        console.log(rating);
-         
-         let decades = $('.decade').val();
-        console.log(decade);
+        let decades = $('.decade').val();
         let languages = $('.language').val();
-         console.log(language);
 
+        //find the id's of actor and director in the API
         Promise.all([
             getIdFromApi(actor),
             getIdFromApi(director)
         ]).then(function (data) {
 
             const actorData = data[0];
-            console.log(actorData);
             const directorData = data[1];
             let idActor = 0;
             let idDirector = 0;
@@ -496,28 +419,28 @@ function handleSubmitInfo() {
             let promiseArrayDecades = [];
           
             let promiseArrayMovies = [];
-            // console.log(decades);
+            
+            //find movies with the actor, director, genre(s), rating, decade(s) and language(s)
             if(genres.length != 0){
-                console.log(genres);
+              
                 genres.forEach(function(genre){
                     if(decades != 0){
                         decades.forEach(function(decade){
                             let newDecade = decade.split(" ");
                             if(languages !=0){
-                                console.log("generos + decada + linguagem ");
+                                
                                 languages.forEach(function(language){
 
                                     promiseArrayMovies.push(getMoviesFromApi(idActor,idDirector,genre,rating, newDecade[0], newDecade[1], language));
                                 });
                                 
                             }else{
-                                console.log("generos + decada ");
+                                
                                 promiseArrayMovies.push(getMoviesFromApi(idActor, idDirector, genre,rating,newDecade[0],newDecade[1],""));
                             }
                         })
                     }else if(languages !=0){
 
-                         console.log("generos + linguagens");
                         languages.forEach(function(language){
 
                             promiseArrayMovies.push(getMoviesFromApi(idActor,idDirector,genre,rating, "", "", language));
@@ -525,7 +448,7 @@ function handleSubmitInfo() {
                         
                         
                     }else {
-                        console.log("generos");
+                        
                         promiseArrayMovies.push(getMoviesFromApi(idActor,idDirector,genre,rating, "", "", ""));
                     }
 
@@ -534,26 +457,23 @@ function handleSubmitInfo() {
                 return Promise.all(promiseArrayMovies);
             }
             else if(decades.length != 0){
-                console.log("aqui com decada");
-
+    
                 decades.forEach(function(decade){
                     let newDecade = decade.split(" ");
                     
                     if(languages.length != 0){
-                        console.log("aqui com linguagem");
                         languages.forEach(function(language){
                             
                              promiseArrayMovies.push(getMoviesFromApi(idActor,idDirector,genres.toString(),rating,newDecade[0], newDecade[1], language));
                         });
                     }else{
-                        console.log("aqui sem linguagem");
+                        
                         promiseArrayMovies.push(getMoviesFromApi(idActor,idDirector,genres.toString(),rating,newDecade[0], newDecade[1], ""));
                         
                     }
                 });
                
-                
-                 console.log(promiseArrayMovies);
+               
                  return Promise.all(promiseArrayMovies);
 
             }else if(languages.length != 0){
@@ -562,116 +482,52 @@ function handleSubmitInfo() {
 
                     return getMoviesFromApi(idActor,idDirector,genres.toString(),rating,"","", elem);
                 });
-                // console.log(promiseArrayMovies);
+               
                 return Promise.all(promiseArrayMovies);
                     
             }else{
-
-                console.log("idactor " + idActor + " id crew " + idDirector + " genres " + genres.toString() + " rating " + rating + " decadeLow " + "" + " decadeHigh "+""+ " language " + "" );
-                
+ 
                     return getMoviesFromApi(idActor, idDirector, genres.toString(),rating,"","","");
                 
 
                
             }
 
-           
-            // console.log("idactor " + idActor + " id crew " + idDirector + " id genre " + genre + " id rating " + rating + " decadeLow " + decade[0] + " decadeHigh "+decade[1]+ " language " + language );
-            // return getMoviesFromApi(idActor,idDirector
-            //     , genre, rating, decade[0], decade[1], language);
-
         })
         
         .then(function(data){
-
-            
+            // concatenate all array of movies retrieved
             let oldMovies = [];
             let newMovies =[]
             let actualMovies = [];
             if(data.constructor == Array){
-
-                console.log("cheguei")
                 for(let i = 0; i< data.length; i++){
-                    console.log(data[i].results);
                     newMovies = oldMovies.concat(data[i].results);
                     oldMovies = newMovies;
                 }
+
+                 //randomize positions of newMovies and filter to only 20 movies
     
-            
-                
                 if(newMovies.length > 20){
-    
-                    //randomize newMovies and filter to only 20
                     actualMovies = shuffle(newMovies).filter(function(elem,index){
                         return index < 20;
                     });
                 } else{
     
                     //only randomize newMovies
-    
                     actualMovies = shuffle(newMovies);
                 }
     
-                console.log(actualMovies);
                 return actualMovies;
             }else{
 
                 //randomize
                 actualMovies = shuffle(data.results);
-                console.log(actualMovies);
                 return actualMovies;
             }
 
         }).then(displayMovieSearchData);
-        
-        // .then(function (data) {
-        //     movies = data.results;
-        //      console.log("movies with genre");
-        //      console.log(data);
-
-        //     //get the movie that has the director selected in his crew with job "director"
-
-
-
-            // const creditPromises = data.results.map(function (movie) {
-
-
-            //     //lets find the director in these movies and see if it corresponds to  the director we want
-
-            //     return getCreditsfromApi(movie.id);
-            // });
-
-            // return Promise.all(creditPromises);
-
-        // // }).then(function (data) {
-
-        //     console.log("array of credits");
-        //     console.log(data);
-        //     //filter the array of objects of credits, by only inserting objects that have in their crew key, the director we want
-        //     const filteredCredits = data.filter(function (credits) {
-        //         const directedBy = credits.crew.find(function (person) {
-        //             return person.job === "Director";
-        //         })
-
-        //         if (directedBy) {
-        //             return directedBy.name.includes(director);
-        //         }
-        //         // inputting the ids of the object with the director we want
-        //     }).map(function (credits) {
-        //         return credits.id;
-        //     });
-        //     // filtering the original array of movies to include only the movies with the selected ids
-        //     const filteredMovies = movies.filter(function (movie) {
-
-        //         return filteredCredits.includes(movie.id);
-        //     });
-
-           
-
-        // })
-        // 
-        // movieMoreInfo = movie;
-        //   handleViewTrailer();
+       
     });
 }
 
@@ -695,8 +551,6 @@ function shuffle(array) {
     return array;
   }
   
-
-
 
 function handleBack() {
     $(".back__link").off('click');
@@ -725,9 +579,6 @@ function displayMoreInfo() {
     const year = new Date(movieMoreInfo.release_date).getFullYear();
     $(".moreInfoPage__title").text(`${movieMoreInfo.original_title} (${year})`);
     //display the movie poster
-    // $(".moreInfoPage__poster").css({
-    //     "background-image": `url(https://image.tmdb.org/t/p/w640${movieMoreInfo.poster_path})`
-    // });
 
     $(".moreInfoPage__poster").html(
         `<img src="https://image.tmdb.org/t/p/w640${movieMoreInfo.poster_path}"></img>`
@@ -744,26 +595,20 @@ function displayMoreInfo() {
         }
     }
 
-    console.log(language());
-    
     $(".moreInfoPage__details--Country").text(`${language()}`);
-    // get the genres again
-
-    //find the list of genres, map the names and  limit to 2 genres to display
-
-    Promise.all([
+    // get info from the movie clicked 
 
         getMovieById(movieMoreInfo.id)
-    ]).then(function (data) {
-        console.log("more info movie");
-       
-         movieMoreInfo = data[0];
-         console.log(movieMoreInfo);
+
+       .then(function (data) {
+        
+         movieMoreInfo = data;
+
+         //map the genres
          
          const genresMoviesMoreInfo = movieMoreInfo.genres.map(function (elem1, index1) {
             return elem1.name;
-    
-           
+  
         });
         
             $('.moreInfoPage__details--genres').text(`${genresMoviesMoreInfo.toString().replace(/,/g, " ")}`);
@@ -771,17 +616,19 @@ function displayMoreInfo() {
     });
 
 
-    //get Director and actors and recommendations
+    //get Director, Actors and Recommendations
     Promise.all([
         getCreditsfromApi(movieMoreInfo.id),
         getRecommendations(movieMoreInfo.id)
     ]).then(function (data) {
         const creditsData = data[0];
         const recommendationsData = data[1];
+
+        //Get the 3 main actors
         let star1 = "";
         let star2 = "";
         let star3 = "";
-        // console.log(data[0]);
+        
         if(data[0].cast.length !== 0){
             if(data[0].cast[0].length != 0 || data[0].cast[0] != undefined){
                 if( data[0].cast[0].name != undefined ){
@@ -819,23 +666,24 @@ function displayMoreInfo() {
             return elem.name
         })
 
-        console.log(nameDirector);
 
         $('.moreInfoPage__team--Director').text(`${nameDirector.toString().replace(/,/g, ", ")}`);
 
-        console.log(data[1].results);
+        //set the posters in the similar movies
 
         $('.similarMovie1').css({
             "background-image": `url(https://image.tmdb.org/t/p/w640${data[1].results[0].poster_path})`
         });
+        
+        //clicking on each movie set moreInfoPage
 
         $(".similarMovie1").off('click');
         $(".similarMovie1").on('click', function (event) {
-            Promise.all([
+            
 
                 getMovieById(data[1].results[0].id)
-            ]).then(function (data) {
-                movieMoreInfo = data[0];
+            .then(function (data) {
+                movieMoreInfo = data;
                 displayMoreInfo();
             });
         });
@@ -846,11 +694,10 @@ function displayMoreInfo() {
 
         $(".similarMovie2").off('click');
         $(".similarMovie2").on('click', function (event) {
-            Promise.all([
-
+            
                 getMovieById(data[1].results[1].id)
-            ]).then(function (data) {
-                movieMoreInfo = data[0];
+            .then(function (data) {
+                movieMoreInfo = data;
                 displayMoreInfo();
             });
         });
@@ -861,11 +708,10 @@ function displayMoreInfo() {
 
         $(".similarMovie3").off('click');
         $(".similarMovie3").on('click', function (event) {
-            Promise.all([
-
+           
                 getMovieById(data[1].results[2].id)
-            ]).then(function (data) {
-                movieMoreInfo = data[0];
+            .then(function (data) {
+                movieMoreInfo = data;
                 displayMoreInfo();
             });
         });
@@ -876,11 +722,10 @@ function displayMoreInfo() {
 
         $(".similarMovie4").off('click');
         $(".similarMovie4").on('click', function (event) {
-            Promise.all([
-
+         
                 getMovieById(data[1].results[3].id)
-            ]).then(function (data) {
-                movieMoreInfo = data[0];
+            .then(function (data) {
+                movieMoreInfo = data;
                 displayMoreInfo();
             });
         });
@@ -891,11 +736,9 @@ function displayMoreInfo() {
         $(".similarMovie5").off('click');
         $(".similarMovie5").on('click', function (event) {
 
-            Promise.all([
-
                 getMovieById(data[1].results[4].id)
-            ]).then(function (data) {
-                movieMoreInfo = data[0];
+            .then(function (data) {
+                movieMoreInfo = data;
                 displayMoreInfo();
             });
         });
@@ -928,23 +771,19 @@ function handleMoreInfo() {
 }
 
 function handleViewTrailer() {
-    // $(".mainMovie__buttons--trailer").off("click");
-    // $(".mainMovie__buttons--trailer").on("click", function (event) {
-        console.log("trailer movie")
-        // console.log(movieMoreInfo);
-
+    
+    //if not similar Movie was selected, the trailer it is from the original Movie
         if (movieMoreInfo.length === 0){
             movieMoreInfo = movie;
         }
-        console.log(movie);
-        
-
-        Promise.all([
+    
+       
+        //retrieve trailer youtube key from Api
 
             getTrailerfromApi(movieMoreInfo.id)
-        ]).then(function (data) {
-            const trailerList = data[0].results;
-            let videoTag = data[0].results.map(function (elem, index) {
+        .then(function (data) {
+
+            let videoTag = data.results.map(function (elem, index) {
 
                 if (elem.name.includes("Trailer")) {
                     return elem.key;
@@ -956,17 +795,11 @@ function handleViewTrailer() {
                 return n == 0 || n
             });
 
-            console.log(videoTag);
+            //set the video-url on the button the youtube link
 
             $(".mainMovie__buttons--trailer").attr('video-url', `https://www.youtube.com/watch?v=${videoTag[0]}`).videoPopup();
 
-            // console.log("cheguei");
-            // // $(".mainMovie__buttons--trailer").videoPopup();
-            // console.log("cheguei popup");
         })
-
-    // }); 
-
 }
 
 function handleDropdown(){
@@ -998,6 +831,8 @@ function handleMovies() {
     handleSubmitInfo();
     handleMoreInfo();
     handleDropdown();
+
+    //set dropdowns
     $('.js-example-basic-multiple').select2({
         theme: "classic",
         maximumSelectionLength: 3
