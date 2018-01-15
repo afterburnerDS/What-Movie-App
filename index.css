@@ -364,9 +364,6 @@ MAIN MOVIE
         .mainMovie__poster{
             
             height: 40rem;
-        
-            
-            
         }
     }
 
@@ -402,7 +399,7 @@ MAIN MOVIE
 }
 
 @media only screen and (max-width: 
-6000px) {
+600px) {
     .mainMovie__info--title{
         
         
