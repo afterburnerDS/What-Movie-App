@@ -650,7 +650,7 @@ a.moreInfoPage__trailer:hover{
     }
 
 
-.moreInfoPage__details p{
+.moreInfoPage__details p:not(last-of-type){
     margin-right: 1.5rem;
   
 }
