@@ -747,6 +747,13 @@ a.moreInfoPage__trailer:hover{
         .similarMovie2{
             display:none;
         }
+
+        .similarMovie{
+            margin-right: 2rem;
+            height: 20rem;
+            width: 13rem;
+            
+        }
     }
 
 .similarMovie:last-of-type{
